@@ -9,7 +9,14 @@ class ProtocolService {
     }
 
     createProtocol(Protocolo){
-        return axios.post(PROTOCOLO_API_BASE_URL, Protocolo);
+        return axios.post(PROTOCOLO_API_BASE_URL, Protocolo).then(res=> {
+            console.log(res)
+        })
+        .catch(error =>{
+            if (error.response.status = 500) {
+                alert("Não foi possível criar o novo protocolo. Verifique se o código/ano já está em utilização.")
+            }
+        });
     }
 
     getProtocolById(ProtocoloId){
